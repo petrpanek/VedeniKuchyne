@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="54.0" layoutY="81.0" text="ID receptu:" />
+      <TextField layoutX="144.0" layoutY="76.0" prefHeight="27.0" prefWidth="101.0" />
+      <Button fx:id="pridejRecept" alignment="CENTER" layoutX="94.0" layoutY="164.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="SMAŽ" textFill="WHITE">
+         <font>
+            <Font name="Calibri Light" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

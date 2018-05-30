@@ -23,6 +23,8 @@
     <property name="connection.pool_size">1</property>
         
     <mapping class="com.github.petrpanek.VedeniKuchyne.logika.Potravina" />
+    <mapping class="com.github.petrpanek.VedeniKuchyne.logika.Recept" />
+    <mapping class="com.github.petrpanek.VedeniKuchyne.logika.ReceptPotravina" />
      
   </session-factory>
   

@@ -3,15 +3,12 @@ package com.github.petrpanek.VedeniKuchyne.logika;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -32,13 +29,9 @@ public class Recept {
 	@Column(name = "obtiznost")
 	private double obtiznost;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
-	@JoinTable(
-			name = "recept_obsahuje_potraviny",
-			joinColumns = { @JoinColumn(name = "recept_id") },
-			inverseJoinColumns = { @JoinColumn(name = "potravina_id") }
-	)
-	Set<Potravina> potraviny = new HashSet<>();
+	@OneToMany(mappedBy = "recept")
+	private Set<ReceptPotravina> receptPotraviny = new HashSet<ReceptPotravina>();
+	
 	public Recept() {
 		
 	}
@@ -49,29 +42,40 @@ public class Recept {
 		this.obtiznost = obtiznost;
 	}
 
-	public int getIdReceptu() {
-		return idReceptu;
-	}
-	public void setIdReceptu(int idReceptu) {
-		this.idReceptu = idReceptu;
-	}
 	public String getNazev() {
 		return nazev;
 	}
+	
 	public void setNazev(String nazev) {
 		this.nazev = nazev;
 	}
+	
 	public String getPostup() {
 		return postup;
 	}
+	
 	public void setPostup(String postup) {
 		this.postup = postup;
 	}
+	
 	public double getObtiznost() {
 		return obtiznost;
 	}
+	
 	public void setObtiznost(double obtiznost) {
 		this.obtiznost = obtiznost;
+	}
+	
+	public Set<ReceptPotravina> getReceptPotraviny() {
+		return receptPotraviny;
+	}
+	
+	public void setReceptPotraviny(Set<ReceptPotravina> receptPotraviny) {
+		this.receptPotraviny = receptPotraviny;
+	}
+	
+	public void addReceptPotravina(ReceptPotravina receptPotravina) {
+		this.receptPotraviny.add(receptPotravina);
 	}
 	
 }

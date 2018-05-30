@@ -26,29 +26,16 @@ public class Potravina {
 	@Column(name = "mnozstvi")
 	private int mnozstvi;
 	
-	@ManyToMany(mappedBy = "recepty")
-	private Set<Recept> recepty = new HashSet<>();
-	
-	public Potravina () {
+	@ManyToMany(mappedBy = "potravina")
+	private Set<ReceptPotravina> receptPotraviny = new HashSet<ReceptPotravina>();
+
+	public Potravina() {
 		
 	}
 	
 	public Potravina(String nazev, int mnozstvi) {
 		this.nazev = nazev;
 		this.mnozstvi = mnozstvi;
-	}
-
-	@Override
-	public String toString() {
-		return "Potravina [idPotraviny=" + idPotraviny + ", nazev=" + nazev + ", mnozstvi=" + mnozstvi + "]";
-	}
-
-	public int getIdPotraviny() {
-		return idPotraviny;
-	}
-
-	public void setIdPotraviny(int idPotraviny) {
-		this.idPotraviny = idPotraviny;
 	}
 
 	public String getNazev() {
@@ -67,6 +54,21 @@ public class Potravina {
 		this.mnozstvi = mnozstvi;
 	}
 	
+	public Set<ReceptPotravina> getReceptPotraviny() {
+		return receptPotraviny;
+	}
 
+	public void setReceptPotraviny(Set<ReceptPotravina> potraviny) {
+		this.receptPotraviny = potraviny;
+	}
+	
+	public void addReceptPotraviny(ReceptPotravina receptPotravina) {
+		this.receptPotraviny.add(receptPotravina);
+	}
+	
+	@Override
+	public String toString() {
+		return "Potravina [idPotraviny=" + idPotraviny + ", nazev=" + nazev + ", mnozstvi=" + mnozstvi + "]";
+	}
 	
 }

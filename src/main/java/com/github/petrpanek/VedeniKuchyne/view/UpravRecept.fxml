@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="96.0" layoutY="35.0" prefHeight="17.0" prefWidth="100.0" text="ID receptu:" />
+      <TextField layoutX="217.0" layoutY="30.0" prefHeight="27.0" prefWidth="110.0" />
+      <Label layoutX="96.0" layoutY="82.0" prefWidth="100.0" text="Postup:" />
+      <TextArea layoutX="217.0" layoutY="82.0" prefHeight="148.0" prefWidth="240.0" />
+      <Label layoutX="96.0" layoutY="254.0" prefWidth="100.0" text="Suroviny:" />
+      <TextField layoutX="217.0" layoutY="249.0" prefHeight="27.0" prefWidth="240.0" />
+      <Label layoutX="96.0" layoutY="294.0" prefWidth="100.0" text="Počet surovin:" />
+      <TextField layoutX="217.0" layoutY="289.0" prefHeight="27.0" prefWidth="240.0" />
+      <Label layoutX="96.0" layoutY="339.0" prefWidth="100.0" text="Obtížnost:" />
+      <TextField layoutX="217.0" layoutY="334.0" prefHeight="27.0" prefWidth="240.0" />
+      <Button fx:id="pridejRecept" alignment="CENTER" layoutX="250.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="ULOŽ" textFill="WHITE">
+         <font>
+            <Font name="Calibri Light" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
