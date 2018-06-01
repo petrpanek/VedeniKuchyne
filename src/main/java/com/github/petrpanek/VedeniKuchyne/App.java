@@ -1,17 +1,36 @@
 package com.github.petrpanek.VedeniKuchyne;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import java.net.URL;
 
-import com.github.petrpanek.VedeniKuchyne.logika.Potravina;
-import com.github.petrpanek.VedeniKuchyne.logika.Recept;
-import com.github.petrpanek.VedeniKuchyne.logika.ReceptPotravina;
-import com.github.petrpanek.VedeniKuchyne.util.HibernateUtil;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
-public class App 
+public class App extends Application
 {
+	
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("view/ReceptView.fxml"));
+			Parent root = loader.load();
+			
+			primaryStage.setTitle("Receptar");
+			primaryStage.setMinWidth(1024);
+			primaryStage.setMinHeight(600);
+	        primaryStage.setScene(new Scene(root));
+	        primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
+		/*
 		Session session = null;
 		Transaction trns = null;
 		
@@ -28,6 +47,10 @@ public class App
 		
 		session.save(receptPotravina);
 		session.getTransaction().commit();
+		*/
 		
+		launch(args);
     }
+
+	
 }

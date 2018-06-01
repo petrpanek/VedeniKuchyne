@@ -72,11 +72,10 @@ public class PotravinaDAO {
 	
 	public static List<Potravina> getAllPotraviny() {
 		List<Potravina> potraviny = new ArrayList<Potravina>();
-		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		try {
-			trns = session.beginTransaction();
+			session.beginTransaction();
 			potraviny = session.createQuery("from Potravina").list();
 		} catch (RuntimeException exc) {
 			exc.printStackTrace();

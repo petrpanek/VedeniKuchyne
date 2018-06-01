@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.petrpanek.VedeniKuchyne.ui.ReceptController">
    <children>
       <VBox prefHeight="600.0" prefWidth="300.0" styleClass="sidebar">
          <children>
@@ -106,6 +105,6 @@
             </VBox>
          </children>
       </VBox>
-      <VBox layoutX="300.0" prefHeight="600.0" prefWidth="724.0" styleClass="parent" />
+      <VBox fx:id="vypis" layoutX="300.0" prefHeight="600.0" prefWidth="724.0" styleClass="parent" />
    </children>
 </AnchorPane>
