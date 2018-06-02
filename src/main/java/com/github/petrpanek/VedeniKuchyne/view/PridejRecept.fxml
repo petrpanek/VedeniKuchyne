@@ -7,20 +7,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.petrpanek.VedeniKuchyne.view.PridaniReceptuController">
    <children>
-      <Label layoutX="96.0" layoutY="35.0" prefHeight="17.0" prefWidth="100.0" text="Název receptu:" />
-      <TextField layoutX="217.0" layoutY="30.0" prefHeight="27.0" prefWidth="240.0" />
-      <Label layoutX="96.0" layoutY="82.0" prefWidth="100.0" text="Postup:" />
-      <TextArea layoutX="217.0" layoutY="82.0" prefHeight="148.0" prefWidth="240.0" />
-      <Label layoutX="96.0" layoutY="254.0" prefWidth="100.0" text="Suroviny:" />
-      <TextField layoutX="217.0" layoutY="249.0" prefHeight="27.0" prefWidth="240.0" />
-      <Label layoutX="96.0" layoutY="294.0" prefWidth="100.0" text="Počet surovin:" />
-      <TextField layoutX="217.0" layoutY="289.0" prefHeight="27.0" prefWidth="240.0" />
-      <Label layoutX="96.0" layoutY="339.0" prefWidth="100.0" text="Obtížnost:" />
-      <TextField layoutX="217.0" layoutY="334.0" prefHeight="27.0" prefWidth="240.0" />
-      <Button fx:id="pridejRecept" alignment="CENTER" layoutX="250.0" layoutY="408.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="ULOŽ" textFill="WHITE">
+      <Label layoutX="350.0" layoutY="35.0" prefHeight="17.0" prefWidth="100.0" text="Název receptu:" />
+      <TextField fx:id="nazevReceptu" layoutX="530.0" layoutY="35.0" prefHeight="27.0" prefWidth="245.0" />
+      <Label layoutX="350.0" layoutY="90.0" prefWidth="100.0" text="Postup:" />
+      <TextArea fx:id="postupReceptu" layoutX="530.0" layoutY="90.0" prefHeight="148.0" prefWidth="245.0" />
+      <Label layoutX="350.0" layoutY="273.0" prefWidth="100.0" text="Suroviny:" />
+      <TextField fx:id="surovinyReceptu" layoutX="530.0" layoutY="268.0" prefHeight="27.0" prefWidth="245.0" />
+      <Label layoutX="350.0" layoutY="327.0" prefWidth="100.0" text="Počet surovin:" />
+      <TextField fx:id="pocetSurovin" layoutX="530.0" layoutY="322.0" prefHeight="27.0" prefWidth="245.0" />
+      <Label layoutX="350.0" layoutY="388.0" prefWidth="100.0" text="Obtížnost:" />
+      <TextField fx:id="obtiznostReceptu" layoutX="530.0" layoutY="383.0" prefHeight="27.0" prefWidth="243.0" />
+      <Button fx:id="ulozReceptBtn" alignment="CENTER" layoutX="440.0" layoutY="477.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ulozRecept" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="ULOŽ" textFill="WHITE">
+         <font>
+            <Font name="Calibri Light" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="zrusUlozeniBtn" alignment="CENTER" layoutX="579.0" layoutY="477.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zrusUlozeni" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="ZRUŠ" textFill="WHITE">
          <font>
             <Font name="Calibri Light" size="17.0" />
          </font>

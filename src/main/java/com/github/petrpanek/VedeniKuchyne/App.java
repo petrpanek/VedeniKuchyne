@@ -1,7 +1,5 @@
 package com.github.petrpanek.VedeniKuchyne;
 
-import java.net.URL;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,19 +9,20 @@ import javafx.stage.Stage;
 
 public class App extends Application
 {
+
+	Scene scene1, scene2;
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage stage) {
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("view/ReceptView.fxml"));
-			Parent root = loader.load();
+			Parent root = FXMLLoader.load(getClass().getResource("view/ReceptView.fxml"));
+			Scene scene = new Scene(root);
 			
-			primaryStage.setTitle("Receptar");
-			primaryStage.setMinWidth(1024);
-			primaryStage.setMinHeight(600);
-	        primaryStage.setScene(new Scene(root));
-	        primaryStage.show();
+			stage.setTitle("Receptar");
+			stage.setMinWidth(1024);
+			stage.setMinHeight(600);
+	        stage.setScene(scene);
+	        stage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

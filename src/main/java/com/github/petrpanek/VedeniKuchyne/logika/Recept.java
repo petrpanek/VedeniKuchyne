@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name = "recepty")
 public class Recept {
@@ -30,6 +33,7 @@ public class Recept {
 	private double obtiznost;
 	
 	@OneToMany(mappedBy = "recept")
+	@Cascade({CascadeType.DELETE})
 	private Set<ReceptPotravina> receptPotraviny = new HashSet<ReceptPotravina>();
 	
 	public Recept() {
