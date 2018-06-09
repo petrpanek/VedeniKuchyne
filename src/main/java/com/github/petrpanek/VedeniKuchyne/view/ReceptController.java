@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.github.petrpanek.VedeniKuchyne.dao.ReceptDAO;
+import com.github.petrpanek.VedeniKuchyne.logika.Recept;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -27,13 +29,16 @@ public class ReceptController extends AnchorPane implements Initializable {
 	@FXML private Button pridejRecept;
 	@FXML private Button smazRecept;	
 	@FXML private Button upravRecept;
-	@FXML private VBox vypis; 
+	@FXML private VBox vypis;
+	@FXML private ScrollPane scroll;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		nactiRecepty();
 		
-		
+		for (Integer mnozstvi : ReceptDAO.getAmount(6)) {
+			System.out.println(mnozstvi);
+		}
 	}
 	
 	@FXML
@@ -64,7 +69,7 @@ public class ReceptController extends AnchorPane implements Initializable {
 	public void nactiRecepty() {
 		boolean isGrey = true;
 		
-		for (Object[] r : ReceptDAO.getAllRecipes() ) {
+		for (Object[] r : ReceptDAO.getAllRecipes()) {
 			HBox item = new HBox();
 			item.setPrefWidth(USE_COMPUTED_SIZE);
 			item.setPrefHeight(100);
@@ -76,14 +81,22 @@ public class ReceptController extends AnchorPane implements Initializable {
 			
 			for (int i = 0; i < r.length; i++) {
 				Label text = new Label();
-				text.setPrefWidth(120);
-				text.setPrefHeight(100);
-				text.setAlignment(Pos.CENTER);
+				text.setMinWidth(120);
+				text.setMinHeight(100);
+				text.setWrapText(true);
+				
+				if (i == 2) {
+					text.setAlignment(Pos.TOP_LEFT);
+				} else {
+					text.setAlignment(Pos.CENTER);
+				}
+				
 				text.setText(r[i].toString());
 				item.getChildren().add(text);
 			}
 			
 			vypis.getChildren().add(item);
+			scroll.setContent(vypis);
 		}
 	}
 

@@ -32,14 +32,16 @@ public class ReceptDAO {
 	}
 	
 	// NEFUNGUJE!!! NEVIM PROC...
-	public static List<Object[]> getIngredients(int id) {
-		List<Object[]> ingredients = new ArrayList<Object[]>();
+	public static List<String> getIngredients(int idReceptu) {
+		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<String> ingredients = new ArrayList<>();
 		
 		try {
-			session.beginTransaction();
-			String query = "SELECT p.nazev FROM Potravina p JOIN ReceptPotravina rp WHERE rp.recept.idReceptu=:id";
-			ingredients = session.createQuery(query).setInteger("id", 6).list();
+			trns = session.beginTransaction();
+			Query q = session.createQuery("SELECT p.nazev FROM Potravina p JOIN ReceptPotravina rp WHERE p.idPotraviny=rp.potravina AND rp.recept=:idReceptu");
+			q.setParameter("idReceptu", new Integer(idReceptu));
+			ingredients =  q.list();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} finally {
@@ -47,6 +49,25 @@ public class ReceptDAO {
 		}
 		
 		return ingredients;
+	}
+	
+	public static List<Integer> getAmount(int idReceptu) {
+		Transaction trns = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Integer> amount = new ArrayList<>();
+		
+		try {
+			trns = session.beginTransaction();
+			Query q = session.createQuery("SELECT rp.mnozstvi FROM Recept r JOIN r.receptPotraviny rp WHERE r.idReceptu = :idReceptu");
+			q.setParameter("idReceptu", idReceptu);
+			amount = q.list();
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return amount;
 	}
 	
 	public static void deleteRecept(int idReceptu) {
@@ -69,6 +90,47 @@ public class ReceptDAO {
 			session.close();
 		}
 	}
+	
+	public static void updateRecept(Recept recept) {
+		Transaction trns = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		try {
+			trns = session.beginTransaction();
+			session.update(recept);
+			session.getTransaction().commit();
+		} catch (RuntimeException exc) {
+			if (trns != null) {
+				trns.rollback();
+			}
+			exc.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+	
+	/*
+	public static void updateRecept(int idReceptu, String postup, Double obtiznost) {
+		Transaction trns = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		
+		try {
+			trns = session.beginTransaction();
+			Query q = session.createQuery("update Recept set postup := postup, obtiznost := obtiznost where idReceptu := idReceptu");
+			q.setParameter("postup", postup);
+			q.setParameter("obtiznost", obtiznost);
+			q.executeUpdate();
+		} catch (RuntimeException exc) {
+			if (trns != null) {
+				trns.rollback();
+			}
+			exc.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+	}
+	*/
 	
 	
 }

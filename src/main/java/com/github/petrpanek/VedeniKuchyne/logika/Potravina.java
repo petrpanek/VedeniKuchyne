@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +26,7 @@ public class Potravina {
 	@Column(name = "mnozstvi")
 	private int mnozstvi;
 	
-	@ManyToMany(mappedBy = "potravina")
+	@OneToMany(mappedBy = "potravina")
 	private Set<ReceptPotravina> receptPotraviny = new HashSet<ReceptPotravina>();
 
 	public Potravina() {

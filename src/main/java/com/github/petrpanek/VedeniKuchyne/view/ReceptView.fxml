@@ -106,7 +106,7 @@
             </VBox>
          </children>
       </VBox>
-      <ScrollPane layoutX="300.0" layoutY="75.0">
+      <ScrollPane fx:id="scroll" fitToWidth="true" layoutX="300.0" layoutY="75.0" vbarPolicy="NEVER">
          <content>
             <VBox fx:id="vypis" prefHeight="525.0" prefWidth="724.0" styleClass="parent" />
          </content>

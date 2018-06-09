@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Recept {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "recept_id")
 	private int idReceptu;
-	
+
 	@Column(name = "nazev")
 	private String nazev;
 	
@@ -32,7 +33,7 @@ public class Recept {
 	@Column(name = "obtiznost")
 	private double obtiznost;
 	
-	@OneToMany(mappedBy = "recept")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "recept")
 	@Cascade({CascadeType.DELETE})
 	private Set<ReceptPotravina> receptPotraviny = new HashSet<ReceptPotravina>();
 	
@@ -80,6 +81,12 @@ public class Recept {
 	
 	public void addReceptPotravina(ReceptPotravina receptPotravina) {
 		this.receptPotraviny.add(receptPotravina);
+	}
+	
+	@Override
+	public String toString() {
+		return "Recept [idReceptu=" + idReceptu + ", nazev=" + nazev + ", postup=" + postup + ", obtiznost=" + obtiznost
+				+ ", receptPotraviny=" + receptPotraviny + "]";
 	}
 	
 }

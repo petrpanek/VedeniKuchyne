@@ -19,8 +19,8 @@ public class App extends Application
 			Scene scene = new Scene(root);
 			
 			stage.setTitle("Receptar");
-			stage.setMinWidth(1024);
-			stage.setMinHeight(600);
+			stage.setMaxWidth(1024);
+			stage.setMaxHeight(600);
 	        stage.setScene(scene);
 	        stage.show();
 		} catch(Exception e) {
