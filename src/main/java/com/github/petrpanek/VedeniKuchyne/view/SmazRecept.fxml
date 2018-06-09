@@ -10,12 +10,12 @@
    <children>
       <Label layoutX="430.0" layoutY="242.0" text="ID receptu:" />
       <TextField fx:id="idReceptu" layoutX="539.0" layoutY="238.0" prefHeight="27.0" prefWidth="101.0" />
-      <Button fx:id="pridejRecept" alignment="CENTER" layoutX="414.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#smazRecept" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="SMAŽ" textFill="WHITE">
+      <Button fx:id="smazBtn" alignment="CENTER" layoutX="414.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#smazRecept" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="SMAŽ" textFill="WHITE">
          <font>
             <Font name="Calibri Light" size="17.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" layoutX="561.0" layoutY="361.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zrusSmazani" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="ZRUS" textFill="WHITE">
+      <Button fx:id="zrusSmazaniBtn" alignment="CENTER" layoutX="561.0" layoutY="361.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zrusSmazani" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #00A2D3;" text="ZRUS" textFill="WHITE">
          <font>
             <Font name="Calibri Light" size="17.0" />
          </font>

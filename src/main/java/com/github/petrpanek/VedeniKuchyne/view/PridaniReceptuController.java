@@ -66,6 +66,7 @@ public class PridaniReceptuController extends AnchorPane {
 			e.printStackTrace();
 		}
 		
+		zrusUlozeniBtn.fire();
 	}
 	
 	@FXML

@@ -11,27 +11,34 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class SmazReceptController extends AnchorPane {
-	
-	@FXML TextField idReceptu;
-	@FXML Button smazBtn;
-	@FXML Button zrusSmazaniBtn;
+public class UpravReceptController extends AnchorPane {
+
+	@FXML private TextField idReceptu;
+	@FXML private TextField nazevReceptu;
+	@FXML private TextArea postupReceptu;
+	@FXML private TextField obtiznostReceptu;
+	@FXML private Button ulozUpraveniBtn;
+	@FXML private Button zrusUpraveniBtn;
 	
 	@FXML
-	public void smazRecept(ActionEvent event) {
-		String recept = idReceptu.getText();
+	public void ulozUpravuReceptu(ActionEvent event) {
+		int id = Integer.parseInt(idReceptu.getText());
+		String nazev = nazevReceptu.getText();
+		String postup = postupReceptu.getText();
+		double obtiznost = Double.parseDouble(obtiznostReceptu.getText());
 		
-		ReceptDAO.deleteRecept(Integer.parseInt(recept));
+		ReceptDAO.updateRecept(id, nazev, postup, obtiznost);
 		
-		zrusSmazaniBtn.fire();
+		zrusUpraveniBtn.fire();
 	}
 	
 	@FXML
-	public void zrusSmazani(ActionEvent event) throws IOException {
+	public void zrusUlozeniReceptu(ActionEvent event) throws IOException {
 		Parent receptViewParent = FXMLLoader.load(getClass().getResource("ReceptView.fxml"));
 		Scene receptViewScene = new Scene(receptViewParent);
 		Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();

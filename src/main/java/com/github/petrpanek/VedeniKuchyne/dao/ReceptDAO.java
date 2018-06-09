@@ -19,11 +19,6 @@ public class ReceptDAO {
 		try {
 			session.beginTransaction();
 			Query q = session.createQuery("SELECT r.idReceptu, r.nazev, r.postup, r.obtiznost FROM Recept r");
-			/*
-			String queryString = "SELECT a.idReceptu, a.nazev, a.postup, a.obtiznost, b.mnozstvi, c.nazev "
-					+ "FROM Recept a, ReceptPotravina b, Potravina c "
-					+ "WHERE c.idPotraviny=b.potravina AND b.recept=a.idReceptu";
-			*/
 			recipes = q.list();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
@@ -93,6 +88,7 @@ public class ReceptDAO {
 		}
 	}
 	
+	/*
 	public static void updateRecept(Recept recept) {
 		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -110,15 +106,17 @@ public class ReceptDAO {
 			session.close();
 		}
 	}
+	*/
 	
-	/*
-	public static void updateRecept(int idReceptu, String postup, Double obtiznost) {
+	public static void updateRecept(int idReceptu, String nazev, String postup, Double obtiznost) {
 		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		
 		try {
 			trns = session.beginTransaction();
-			Query q = session.createQuery("update Recept set postup := postup, obtiznost := obtiznost where idReceptu := idReceptu");
+			Query q = session.createQuery("UPDATE Recept set nazev = :nazev, postup = :postup, obtiznost = :obtiznost WHERE idReceptu = :idReceptu");
+			q.setParameter("idReceptu", idReceptu);
+			q.setParameter("nazev", nazev);
 			q.setParameter("postup", postup);
 			q.setParameter("obtiznost", obtiznost);
 			q.executeUpdate();
@@ -132,7 +130,5 @@ public class ReceptDAO {
 		}
 		
 	}
-	*/
-	
 	
 }

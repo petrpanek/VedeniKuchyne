@@ -73,6 +73,8 @@ public class ReceptController extends AnchorPane implements Initializable {
 			if (isGrey) {
 				item.setStyle(" -fx-background-color: #e8e8e8 ");
 				isGrey = !isGrey;
+			} else {
+				isGrey = !isGrey;
 			}
 			
 			for (int i = 0; i < r.length; i++) {
