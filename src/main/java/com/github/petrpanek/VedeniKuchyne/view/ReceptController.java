@@ -2,10 +2,10 @@ package com.github.petrpanek.VedeniKuchyne.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 import com.github.petrpanek.VedeniKuchyne.dao.ReceptDAO;
-import com.github.petrpanek.VedeniKuchyne.logika.Recept;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,11 +34,7 @@ public class ReceptController extends AnchorPane implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		nactiRecepty();
-		
-		for (Integer mnozstvi : ReceptDAO.getAmount(6)) {
-			System.out.println(mnozstvi);
-		}
+		loadRecipes();
 	}
 	
 	@FXML
@@ -66,7 +62,7 @@ public class ReceptController extends AnchorPane implements Initializable {
 		appStage.show();
 	}
 	
-	public void nactiRecepty() {
+	public void loadRecipes() {
 		boolean isGrey = true;
 		
 		for (Object[] r : ReceptDAO.getAllRecipes()) {
@@ -81,6 +77,7 @@ public class ReceptController extends AnchorPane implements Initializable {
 			
 			for (int i = 0; i < r.length; i++) {
 				Label text = new Label();
+				int id = (int) r[0];
 				text.setMinWidth(120);
 				text.setMinHeight(100);
 				text.setWrapText(true);
@@ -93,11 +90,53 @@ public class ReceptController extends AnchorPane implements Initializable {
 				
 				text.setText(r[i].toString());
 				item.getChildren().add(text);
+				
+				if (i == r.length - 1) {
+					item.getChildren().add(setAmountIngredience(id));
+					item.getChildren().add(setIngredience(id));
+				}
 			}
 			
 			vypis.getChildren().add(item);
 			scroll.setContent(vypis);
 		}
+	}
+	
+	public Label setIngredience(int idReceptu) {
+		Label ingredience = new Label();
+		String text = String.join(", ", ReceptDAO.getIngredients(idReceptu));
+		
+		ingredience.setMinWidth(120);
+		ingredience.setMinHeight(100);
+		ingredience.setWrapText(true);
+		ingredience.setAlignment(Pos.CENTER);
+		ingredience.setText(text);
+		
+		return ingredience;
+	}
+	
+	public Label setAmountIngredience(int idReceptu) {
+		Label amount = new Label();
+		StringBuilder text = new StringBuilder();
+		Iterator<Integer> integerIterator = ReceptDAO.getAmount(idReceptu).iterator();
+		
+		while (integerIterator.hasNext()) {
+			text.append(integerIterator.next());
+			
+			if (integerIterator.hasNext()) {
+				text.append("x, ");
+			} else {
+				text.append("x");
+			}
+		}
+		
+		amount.setMinWidth(120);
+		amount.setMinHeight(100);
+		amount.setWrapText(true);
+		amount.setAlignment(Pos.CENTER);
+		amount.setText(text.toString());
+		
+		return amount;
 	}
 
 }

@@ -18,10 +18,13 @@ public class ReceptDAO {
 		
 		try {
 			session.beginTransaction();
+			Query q = session.createQuery("SELECT r.idReceptu, r.nazev, r.postup, r.obtiznost FROM Recept r");
+			/*
 			String queryString = "SELECT a.idReceptu, a.nazev, a.postup, a.obtiznost, b.mnozstvi, c.nazev "
 					+ "FROM Recept a, ReceptPotravina b, Potravina c "
 					+ "WHERE c.idPotraviny=b.potravina AND b.recept=a.idReceptu";
-			recipes = session.createQuery(queryString).list();
+			*/
+			recipes = q.list();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} finally {
@@ -31,7 +34,6 @@ public class ReceptDAO {
 		return recipes;
 	}
 	
-	// NEFUNGUJE!!! NEVIM PROC...
 	public static List<String> getIngredients(int idReceptu) {
 		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -39,9 +41,9 @@ public class ReceptDAO {
 		
 		try {
 			trns = session.beginTransaction();
-			Query q = session.createQuery("SELECT p.nazev FROM Potravina p JOIN ReceptPotravina rp WHERE p.idPotraviny=rp.potravina AND rp.recept=:idReceptu");
-			q.setParameter("idReceptu", new Integer(idReceptu));
-			ingredients =  q.list();
+			Query q = session.createQuery("SELECT p.nazev FROM Recept r JOIN r.receptPotraviny rp JOIN rp.potravina p WHERE r.idReceptu = :idReceptu");
+			q.setParameter("idReceptu", idReceptu);
+			ingredients = q.list();
 		} catch (RuntimeException e) {
 			e.printStackTrace();
 		} finally {
