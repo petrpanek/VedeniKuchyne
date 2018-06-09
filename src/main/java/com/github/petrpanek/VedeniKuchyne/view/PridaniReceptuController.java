@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.github.petrpanek.VedeniKuchyne.dao.ReceptDAO;
 import com.github.petrpanek.VedeniKuchyne.logika.Potravina;
 import com.github.petrpanek.VedeniKuchyne.logika.Recept;
 import com.github.petrpanek.VedeniKuchyne.logika.ReceptPotravina;
@@ -38,33 +39,9 @@ public class PridaniReceptuController extends AnchorPane {
 		String postup = postupReceptu.getText();
 		String[] suroviny = surovinyReceptu.getText().split(",");
 		String[] pocet = pocetSurovin.getText().split(",");
-		String obtiznost = obtiznostReceptu.getText();
+		double obtiznost = Double.parseDouble(obtiznostReceptu.getText());
 		
-		try {
-			Session session = null;
-			Transaction trns = null;
-			
-			Recept recept = new Recept(nazev, postup, Double.parseDouble(obtiznost));
-			session = HibernateUtil.getSessionFactory().openSession();
-			
-			for (int i = 0; i < suroviny.length; i++) {
-				
-				trns = session.beginTransaction();
-				
-				ReceptPotravina receptPotravina = new ReceptPotravina();
-				receptPotravina.setRecept(recept);
-				Potravina potravina = new Potravina(suroviny[i], 100);
-				receptPotravina.setPotravina(potravina);
-				receptPotravina.setMnozstvi(Integer.parseInt(pocet[i]));
-				
-				session.save(receptPotravina);
-				session.getTransaction().commit();
-			}
-			
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		ReceptDAO.saveRecept(nazev, postup, suroviny, pocet, obtiznost);
 		
 		zrusUlozeniBtn.fire();
 	}
