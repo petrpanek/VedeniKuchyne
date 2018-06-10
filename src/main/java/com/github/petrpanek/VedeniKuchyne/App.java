@@ -30,7 +30,7 @@ public class App extends Application
 			
 			stage.setTitle("Receptar");
 			stage.setMaxWidth(1024);
-			stage.setMaxHeight(600);
+			stage.setMaxHeight(620);
 	        stage.setScene(scene);
 	        stage.show();
 		} catch(Exception e) {
