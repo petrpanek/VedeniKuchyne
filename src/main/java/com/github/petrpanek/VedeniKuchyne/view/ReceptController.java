@@ -23,6 +23,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Controller pro ReceptView.fxml
+ * Controller obsahujici metody pro ulozeni a zruseni ulozeni receptu
+ * 
+ * @author 	Petr Panek
+ * @version 1.0
+ */
 public class ReceptController extends AnchorPane implements Initializable {
 	
 	@FXML private AnchorPane rootPane;
@@ -32,11 +39,20 @@ public class ReceptController extends AnchorPane implements Initializable {
 	@FXML private VBox vypis;
 	@FXML private ScrollPane scroll;
 	
+	/**
+	 * Inicializacni metoda pro nacteni receptu z databaze
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		loadRecipes();
 	}
 	
+	/**
+	 * Metoda pro prechod na scenu s pridanim receptu.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 * @throws IOException V pripadne spatneho nacteni FXMLLoaderu
+	 */
 	@FXML
 	public void nactiPridaniReceptu(ActionEvent event) throws IOException {
 		Parent pridaniReceptuParent = FXMLLoader.load(getClass().getResource("PridejRecept.fxml"));
@@ -46,6 +62,12 @@ public class ReceptController extends AnchorPane implements Initializable {
 		appStage.show();
 	}
 	
+	/**
+	 * Metoda pro prechod na scenu se smazanim receptu.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 * @throws IOException V pripadne spatneho nacteni FXMLLoaderu
+	 */
 	@FXML void nactiSmazaniReceptu(ActionEvent event) throws IOException {
 		Parent smazaniReceptuParent = FXMLLoader.load(getClass().getResource("SmazRecept.fxml"));
 		Scene smazaniReceptuScene = new Scene(smazaniReceptuParent);
@@ -54,6 +76,12 @@ public class ReceptController extends AnchorPane implements Initializable {
 		appStage.show();
 	}
 	
+	/**
+	 * Metoda pro prechod na upravu receptu.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 * @throws IOException V pripadne spatneho nacteni FXMLLoaderu
+	 */
 	@FXML void nactiUpravuReceptu(ActionEvent event) throws IOException {
 		Parent pridaniReceptuParent = FXMLLoader.load(getClass().getResource("UpravRecept.fxml"));
 		Scene pridaniReceptuScene = new Scene(pridaniReceptuParent);
@@ -62,6 +90,9 @@ public class ReceptController extends AnchorPane implements Initializable {
 		appStage.show();
 	}
 	
+	/**
+	 * Metoda pro nastaveni radku s daty, ktere byly ziskany z databaze
+	 */
 	public void loadRecipes() {
 		boolean isGrey = true;
 		
@@ -104,6 +135,12 @@ public class ReceptController extends AnchorPane implements Initializable {
 		}
 	}
 	
+	/**
+	 * Metoda pro nastaveni Labelu s ingrediencemi
+	 * 
+	 * @param idReceptu Recept, pro ktery chceme ingredience nastavit
+	 * @return Label Nastaveny label s ingrediencemi
+	 */
 	public Label setIngredience(int idReceptu) {
 		Label ingredience = new Label();
 		String text = String.join(", ", ReceptDAO.getIngredients(idReceptu));
@@ -117,6 +154,12 @@ public class ReceptController extends AnchorPane implements Initializable {
 		return ingredience;
 	}
 	
+	/**
+	 * Metoda pro nastaveni Labelu s poctem ingredienci
+	 * 
+	 * @param idReceptu Recept, pro ktery chceme pocet ingredienci nastavit
+	 * @return Label Nastaveny label s poctem ingredienci
+	 */
 	public Label setAmountIngredience(int idReceptu) {
 		Label amount = new Label();
 		StringBuilder text = new StringBuilder();

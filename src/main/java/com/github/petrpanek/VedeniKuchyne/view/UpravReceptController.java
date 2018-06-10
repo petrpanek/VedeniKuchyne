@@ -16,6 +16,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Controller pro UpravRecept.fxml
+ * Controller obsahujici metody pro ulozeni upravy a zruseni upravy receptu.
+ * 
+ * @author 	Petr Panek
+ * @version 1.0
+ */
 public class UpravReceptController extends AnchorPane {
 
 	@FXML private TextField idReceptu;
@@ -25,6 +32,12 @@ public class UpravReceptController extends AnchorPane {
 	@FXML private Button ulozUpraveniBtn;
 	@FXML private Button zrusUpraveniBtn;
 	
+	/**
+	 * Metoda pro ulozeni upravy Receptu do databaze.
+	 * Metoda prevezme udaje z UI a nasledne je aktualizuje.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 */
 	@FXML
 	public void ulozUpravuReceptu(ActionEvent event) {
 		int id = Integer.parseInt(idReceptu.getText());
@@ -37,6 +50,12 @@ public class UpravReceptController extends AnchorPane {
 		zrusUpraveniBtn.fire();
 	}
 	
+	/**
+	 * Metoda pro vraceni se na uvodni scenu.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 * @throws IOException V pripadne spatneho nacteni FXMLLoaderu
+	 */
 	@FXML
 	public void zrusUlozeniReceptu(ActionEvent event) throws IOException {
 		Parent receptViewParent = FXMLLoader.load(getClass().getResource("ReceptView.fxml"));

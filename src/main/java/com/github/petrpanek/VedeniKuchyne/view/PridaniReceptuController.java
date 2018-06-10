@@ -2,14 +2,7 @@ package com.github.petrpanek.VedeniKuchyne.view;
 
 import java.io.IOException;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import com.github.petrpanek.VedeniKuchyne.dao.ReceptDAO;
-import com.github.petrpanek.VedeniKuchyne.logika.Potravina;
-import com.github.petrpanek.VedeniKuchyne.logika.Recept;
-import com.github.petrpanek.VedeniKuchyne.logika.ReceptPotravina;
-import com.github.petrpanek.VedeniKuchyne.util.HibernateUtil;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +16,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+/**
+ * Controller pro PridejRecept.fxml
+ * Controller obsahujici metody pro ulozeni a zruseni ulozeni receptu
+ * 
+ * @author 	Petr Panek
+ * @version 1.0
+ */
 public class PridaniReceptuController extends AnchorPane {
 
 	@FXML private TextField nazevReceptu;
@@ -33,6 +33,12 @@ public class PridaniReceptuController extends AnchorPane {
 	@FXML private Button ulozReceptBtn;
 	@FXML private Button zrusUlozeniBtn;
 	
+	/**
+	 * Metoda pro ulozeni Receptu do databaze.
+	 * Metoda prevezme udaje z UI a nasledne je ulozi.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 */
 	@FXML
 	public void ulozRecept(ActionEvent event) {
 		String nazev = nazevReceptu.getText();
@@ -46,6 +52,12 @@ public class PridaniReceptuController extends AnchorPane {
 		zrusUlozeniBtn.fire();
 	}
 	
+	/**
+	 * Metoda pro vraceni se na uvodni scenu.
+	 * 
+	 * @param event Event po stisknuti Buttonu
+	 * @throws IOException V pripadne spatneho nacteni FXMLLoaderu
+	 */
 	@FXML
 	public void zrusUlozeni(ActionEvent event) throws IOException {
 		Parent receptViewParent = FXMLLoader.load(getClass().getResource("ReceptView.fxml"));

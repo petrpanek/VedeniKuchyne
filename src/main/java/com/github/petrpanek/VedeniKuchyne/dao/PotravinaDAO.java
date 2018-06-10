@@ -9,8 +9,22 @@ import org.hibernate.Transaction;
 import com.github.petrpanek.VedeniKuchyne.logika.Potravina;
 import com.github.petrpanek.VedeniKuchyne.util.HibernateUtil;
 
+/**
+ *  Třída PotravinaDAO - obsahuje metody pro praci s databazi nad potravinami
+ *  Používá se pro CRUD operace nad potravinami.
+ *
+ *  Tato třída je součástí aplikace receptar.
+ *
+ * @author     Petr Panek
+ * @version    1.0
+ */
 public class PotravinaDAO {
 	
+	 /**
+	 * Metoda uklada potravinu do databaze.
+	 *
+	 * @param potravina Potravina pro ulozeni
+	 */
 	public static void addPotravina(Potravina potravina) {
 		Transaction trns = null;
 		Session session = null;
@@ -33,6 +47,11 @@ public class PotravinaDAO {
 		
 	}
 	
+	/**
+	 * Metoda odstranuje potravinu z databaze.
+	 *
+	 * @param idPotraviny Potravina pro odstraneni
+	 */
 	public static void deletePotravina(int idPotraviny) {
 		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -52,6 +71,11 @@ public class PotravinaDAO {
 		}
 	}
 	
+	/**
+	 * Metoda aktualizuje potravinu v databazi.
+	 *
+	 * @param potravina Potravina pro aktualizovani
+	 */
 	public static void updatePotravina(Potravina potravina) {
 		Transaction trns = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -70,6 +94,11 @@ public class PotravinaDAO {
 		}
 	}
 	
+	/**
+	 * Metoda slouzi k vytazeni vsech potravin z databaze.
+	 *
+	 * @return List<Potravina> List se vsemi potravinami v databazi
+	 */
 	public static List<Potravina> getAllPotraviny() {
 		List<Potravina> potraviny = new ArrayList<Potravina>();
 		Session session = HibernateUtil.getSessionFactory().openSession();
